@@ -1,26 +1,31 @@
-name: Ada Build (GPRbuild con Main)
+name: Ada SPARK Verification
 
 on:
   push:
-    branches: [ "main", "changes main" ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ "main", "changes main" ]
+    branches: [ main ]
 
 jobs:
-  build:
+  verify:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-
-    - name: Listar archivos para asegurar (Debug)
-      run: ls -la
-
-    - name: Instalar GNAT y GPRbuild
+    - uses: actions/checkout@v4
+    
+    - name: Set up Ada/SPARK environment
       run: |
         sudo apt-get update
-        sudo apt-get install -y gnat gprbuild
-
-    - name: Compilar Proyecto
-      run: gprbuild -P colors_table.gpr
+        sudo apt-get install -y gnat gprbuild spark2014
+    
+    - name: Build project
+      run: |
+        gprbuild -P. -v
+    
+    - name: Run SPARK verification
+      run: |
+        gnatprove -P. --level=4 --prove=all
+    
+    - name: Run tests
+      run: |
+        gprbuild -P. -Xmode=test -v
