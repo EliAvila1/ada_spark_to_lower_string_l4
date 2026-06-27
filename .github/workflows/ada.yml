@@ -2,9 +2,9 @@ name: Ada Build (GPRbuild con Main)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "changes main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "changes main" ]
 
 jobs:
   build:
@@ -13,6 +13,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+
+    - name: Listar archivos para asegurar (Debug)
+      run: ls -la
 
     - name: Instalar GNAT y GPRbuild
       run: |
