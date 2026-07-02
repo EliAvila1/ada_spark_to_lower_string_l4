@@ -2,7 +2,7 @@ ADA/SPARK
 
 procedure to_lower_string with spark_mode => On;
 
-""Summary of SPARK analysis
+Summary of SPARK analysis
 =========================
 
 ---------------------------------------------------------------------------------------------
@@ -26,5 +26,5 @@ max steps used for successful proof: 1
 
 Analyzed 1 unit
 in unit black_list_pswd, 1 subprograms and packages out of 1 analyzed
-  black_list_pswd.To_Lower_Internal at black_list_pswd.adb:9 flow analyzed (0 errors, 0 checks and 0 warnings) and proved (26 checks)""
+  black_list_pswd.To_Lower_Internal at black_list_pswd.adb:9 flow analyzed (0 errors, 0 checks and 0 warnings) and proved (26 checks)
   
